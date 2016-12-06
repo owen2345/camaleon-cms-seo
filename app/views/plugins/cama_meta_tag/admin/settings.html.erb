@@ -1,0 +1,20 @@
+<%= form_tag url_for(action: :save_settings), method: :post, class: 'panel panel-default' do %>
+    <div class="panel-heading">
+        <h4><%= t('.title_settings') %></h4>
+    </div>
+    <div class="panel-body">
+        <label><%= t('camaleon_cms.admin.post_type.post_types') %></label>
+        <% current_site.the_post_types.decorate.each do |post_type| %>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="enabled_for_post_types[]" value="<%= post_type.id %>" <%= "checked" if current_plugin.get_option('enabled_for_post_types', []).include?(post_type.id.to_s) rescue false %> />
+                    <%= post_type.the_title %>
+                </label>
+            </div>
+        <% end %>
+        <small><%= t('.post_types_descr', default: 'Select your post types where to apply seo fields.') %></small>
+    </div>
+    <div class="panel-footer">
+        <button class="btn btn-primary pull-right" type="submit"><%= t('camaleon_cms.admin.button.submit') %></button>
+    </div>
+<% end %>

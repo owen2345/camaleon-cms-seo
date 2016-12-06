@@ -1,0 +1,20 @@
+{
+  "title": "Cama Meta Tags",
+  "descr": "",
+  "key": "cama_meta_tag", // must be the name of the folder of your plugin, sample: app/views/plugins/<my_plugin> ==> 'my_plugin'
+  "helpers": [
+    "Plugins::CamaMetaTag::MainHelper"
+  ],
+  "hooks": {
+    "on_active": [
+      "cama_meta_tag_on_active"
+    ],
+    "on_inactive": [
+      "cama_meta_tag_on_inactive"
+    ],
+    "seo": ["cama_meta_tag_on_seo"],
+    "plugin_options": ["cama_meta_tags_plugin_links"],
+    "post_form_custom_html": ["cama_meta_tag_post_form_custom_html"]
+    //here you can add all your hooks (read documentation)
+  }
+}

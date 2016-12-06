@@ -1,0 +1,17 @@
+en:
+  plugins:
+    cama_meta_tag:
+      admin:
+        settings_label: 'Settings'
+        settings:
+          post_types_descr: 'Select your post types where to apply seo fields.'
+          title_settings: 'Meta Tag Settings'
+        save_settings:
+          settings_saved: 'Settings Saved'
+        meta_tag_fields:
+          title_seo: 'Seo Settings'
+          seo_title: 'Title'
+          seo_keywords: 'Keywords'
+          seo_descr: 'Description'
+          seo_author: 'Author'
+          seo_image: 'Image (Ideal: 1200 x 1200 or larger with a square aspect ratio)'
