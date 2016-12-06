@@ -15,3 +15,152 @@ en:
           seo_descr: 'Description'
           seo_author: 'Author'
           seo_image: 'Image (Ideal: 1200 x 1200 or larger with a square aspect ratio)'
+
+nl:
+  plugins:
+    cama_meta_tag:
+      admin:
+        settings_label: 'instellingen'
+        settings:
+          post_types_descr: 'Selecteer uw bericht typen waar te seo velden toe te passen.'
+          title_settings: 'Meta Tag instellingen'
+        save_settings:
+          settings_saved: 'Instellingen opgeslagen'
+        meta_tag_fields:
+          title_seo: 'Seo Instellingen'
+          seo_title: 'Titel'
+          seo_keywords: 'Trefwoorden'
+          seo_descr: 'Beschrijving'
+          seo_author: 'Auteur'
+          seo_image: 'Afbeelding (Ideal: 1200 x 1200 of groter met een vierkant aspect ratio)'
+
+pt:
+  plugins:
+    cama_meta_tag:
+      admin:
+        settings_label: 'Configurações'
+        settings:
+          post_types_descr: 'Selecione os tipos de postagem onde aplicar campos seo.'
+          title_settings: 'Definições da Meta Tag'
+        save_settings:
+          settings_saved: 'Configurações salvas'
+        meta_tag_fields:
+          title_seo: 'Configurações de Seo'
+          seo_title: 'Título'
+          seo_keywords: 'Palavras-chave'
+          seo_descr: 'Descrição'
+          seo_author: 'Autor'
+          seo_image: 'Imagem (Ideal: 1200 x 1200 ou maior com uma relação de aspecto quadrada)'
+
+
+
+pt-BR:
+  plugins:
+    cama_meta_tag:
+      admin:
+        settings_label: 'Configurações'
+        settings:
+          post_types_descr: 'Selecione os tipos de postagem onde aplicar campos seo.'
+          title_settings: 'Definições da Meta Tag'
+        save_settings:
+          settings_saved: 'Configurações salvas'
+        meta_tag_fields:
+          title_seo: 'Configurações de Seo'
+          seo_title: 'Título'
+          seo_keywords: 'Palavras-chave'
+          seo_descr: 'Descrição'
+          seo_author: 'Autor'
+          seo_image: 'Imagem (Ideal: 1200 x 1200 ou maior com uma relação de aspecto quadrada)'
+
+
+
+de:
+  plugins:
+    cama_meta_tag:
+      admin:
+        settings_label: 'Einstellungen'
+        settings:
+          post_types_descr: 'Wählen Sie Ihre Posttypen aus, wo Sie seo Felder anwenden können.'
+          title_settings: 'Meta-Tag-Einstellungen'
+        save_settings:
+          settings_saved: 'Einstellungen gespeichert'
+        meta_tag_fields:
+          title_seo: 'Seo Einstellungen'
+          seo_title: 'Titel'
+          seo_keywords: 'Schlüsselwörter'
+          seo_descr: 'Beschreibung'
+          seo_author: 'Autor'
+          seo_image: 'Bild (Ideal: 1200 x 1200 oder größer mit einem quadratischen Seitenverhältnis)'
+
+
+it:
+  plugins:
+    cama_meta_tag:
+      admin:
+        settings_label: 'Impostazioni'
+        settings:
+          post_types_descr: 'Selezionate la tipologia di pubblicare dove applicare i campi di SEO.'
+          title_settings: 'Impostazioni Meta Tag'
+        save_settings:
+          settings_saved: 'Impostazioni salvate'
+        meta_tag_fields:
+          title_seo: 'Impostazioni Seo'
+          seo_title: 'Titolo'
+          seo_keywords: 'Parole'
+          seo_descr: 'Descrizione'
+          seo_author: 'Autore'
+          seo_image: 'Immagine (ideale: 1200 x 1200 o superiore con un rapporto di aspetto di quadratura)'
+
+zh-CN:
+  plugins:
+    cama_meta_tag:
+      admin:
+        settings_label: '设置'
+        settings:
+          post_types_descr: '选择您的帖子类型在哪里应用seo字段。'
+          title_settings: '元标记设置'
+        save_settings:
+          settings_saved: '设置已保存'
+        meta_tag_fields:
+          title_seo: 'Seo设置'
+          seo_title: '标题'
+          seo_keywords: '关键词'
+          seo_descr: '描述'
+          seo_author: '作者'
+          seo_image: '图片（理想：1200 x 1200或更大，正方形高宽比）'
+
+ru:
+  plugins:
+    cama_meta_tag:
+      admin:
+        settings_label: 'настройки'
+        settings:
+          post_types_descr: 'Укажите типы почтовых где применить сео поля.'
+          title_settings: 'Мета Настройки тегов'
+        save_settings:
+          settings_saved: 'Настройки сохранены'
+        meta_tag_fields:
+          title_seo: 'Настройки Сео'
+          seo_title: 'заглавие'
+          seo_keywords: 'Ключевые слова'
+          seo_descr: 'Описание'
+          seo_author: 'автор'
+          seo_image: 'Изображение (Идеально: 1200 х 1200 или больше с квадратным соотношением сторон)'
+
+es:
+  plugins:
+    cama_meta_tag:
+      admin:
+        settings_label: 'Ajustes'
+        settings:
+          post_types_descr: 'Seleccione los tipos de publicación donde aplicar los campos de seo.'
+          title_settings: 'Configuración de etiquetas de meta'
+        save_settings:
+          settings_saved: 'Ajustes guardados'
+        meta_tag_fields:
+          title_seo: 'Configuración de Seo'
+          seo_title: 'Título'
+          seo_keywords: 'Palabras claves'
+          seo_descr: 'Descripción'
+          seo_author: 'Autor'
+          seo_image: 'Imagen (Ideal: 1200 x 1200 o mayor con una relación de aspecto cuadrada)'

@@ -36,11 +36,11 @@ module Plugins::CamaMetaTag::MainHelper
     end
   end
 
-  def cama_meta_tags_plugin_links(args)
-    args[:links] << link_to(cama_t('plugins.cama_meta_tag.admin.settings_label'), admin_plugins_cama_meta_tag_settings_path)
-  end
+  # def cama_meta_tags_plugin_links(args)
+  #   # args[:links] << link_to(cama_t('plugins.cama_meta_tag.admin.settings_label'), admin_plugins_cama_meta_tag_settings_path)
+  # end
 
   def cama_meta_tag_post_form_custom_html(args)
-    args[:html] << render(partial: plugin_view('admin/meta_tag_fields'), locals: {post: args[:post], post_type: args[:post_type]}) if current_plugin.get_option('enabled_for_post_types', []).include?(args[:post_type].id.to_s)
+    args[:html] << render(partial: plugin_view('admin/meta_tag_fields'), locals: {post: args[:post], post_type: args[:post_type]}) if args[:post].manage_seo?
   end
 end
