@@ -14,12 +14,13 @@ module Plugins::CamaMetaTag::MainHelper
 
   def cama_meta_tag_on_seo(args)
     if is_page?
+      page = args[:object] || @cama_visited_post
       tmp = {
-          title: args[:object].get_option('seo_title').to_s.translate,
-          keywords: args[:object].get_option('keywords').to_s.translate,
-          descr: args[:object].get_option('seo_description').to_s.translate,
-          author: args[:object].get_option('seo_author').to_s.translate,
-          image: args[:object].get_option('seo_image').to_s.translate
+          title: page.get_option('seo_title').to_s.translate,
+          keywords: page.get_option('keywords').to_s.translate,
+          descr: page.get_option('seo_description').to_s.translate,
+          author: page.get_option('seo_author').to_s.translate,
+          image: page.get_option('seo_image').to_s.translate
       }
       args[:seo_data][:title] = tmp[:title] if tmp[:title].present?
       args[:seo_data][:keywords] = tmp[:keywords] if tmp[:keywords].present?
