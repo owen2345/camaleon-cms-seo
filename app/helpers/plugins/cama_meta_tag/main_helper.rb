@@ -1,7 +1,4 @@
 module Plugins::CamaMetaTag::MainHelper
-  def self.included(klass)
-    # klass.helper_method [:my_helper_method] rescue "" # here your methods accessible from views
-  end
 
   # here all actions on going to active
   # you can run sql commands like this:
@@ -36,11 +33,17 @@ module Plugins::CamaMetaTag::MainHelper
     end
   end
 
-  # def cama_meta_tags_plugin_links(args)
-  #   # args[:links] << link_to(cama_t('plugins.cama_meta_tag.admin.settings_label'), admin_plugins_cama_meta_tag_settings_path)
-  # end
+  # check if seo plugin is running for Camaleon CMS <= 2.3.6
+  def cama_meta_tag_post_is_for_old_version?(post)
+    !post.method_defined?(:manage_seo?)
+  end
 
   def cama_meta_tag_post_form_custom_html(args)
-    args[:html] << render(partial: plugin_view('admin/meta_tag_fields'), locals: {post: args[:post], post_type: args[:post_type]}) if args[:post].manage_seo?
+    unless cama_meta_tag_post_is_for_old_version?(post)
+      manage_seo = args[:post].manage_seo?
+    else
+      manage_seo = args[:post].manage_keywords?(args[:post_type]) # support for old Camaleon CMS versions (use keywords setting instead of seo setting)
+    end
+    args[:html] << render(partial: plugin_view('admin/meta_tag_fields'), locals: {post: args[:post], post_type: args[:post_type]}) if manage_seo
   end
 end

@@ -1,5 +1,4 @@
 <% t_scope = 'plugins.cama_meta_tag.admin.meta_tag_fields' %>
-<script>jQuery(function(){ $('#form-post #post_keywords').closest('.form-group').remove() })</script>
 <div class="panel panel-default panel-toggled">
     <div class="panel-heading">
         <div><b><%= cama_t('.title_seo', scope: t_scope) %></b></div>
@@ -31,4 +30,9 @@
         </div>
     </div>
 </div>
-<script type="application/javascript">jQuery(function(){ $("#form-post #options_seo_image").input_upload({label: '', title: '<%= cama_t('.seo_image', scope: t_scope) %>', type: 'image'}); })</script>
+<script type="application/javascript">
+jQuery(function(){
+    $("#form-post #options_seo_image").input_upload({label: '', title: '<%= cama_t('.seo_image', scope: t_scope) %>', type: 'image'});
+    <% if cama_meta_tag_post_is_for_old_version?(post) %> $('#form-post #post_keywords').closest('.form-group').remove(); <% end %>
+})
+</script>
