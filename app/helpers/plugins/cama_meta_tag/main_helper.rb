@@ -34,13 +34,20 @@ module Plugins::CamaMetaTag::MainHelper
     end
   end
 
+  # fix for old versions of camaleon cms
+  def cama_meta_tag_post_saved(args)
+    if cama_meta_tag_post_is_for_old_version?(args[:post])
+      args[:post].set_multiple_options(params[:options].permit!.to_h)
+    end
+  end
+
   # check if seo plugin is running for Camaleon CMS <= 2.3.6
   def cama_meta_tag_post_is_for_old_version?(post)
-    !post.method_defined?(:manage_seo?)
+    !post.respond_to?(:manage_seo?)
   end
 
   def cama_meta_tag_post_form_custom_html(args)
-    unless cama_meta_tag_post_is_for_old_version?(post)
+    unless cama_meta_tag_post_is_for_old_version?(args[:post])
       manage_seo = args[:post].manage_seo?
     else
       manage_seo = args[:post].manage_keywords?(args[:post_type]) # support for old Camaleon CMS versions (use keywords setting instead of seo setting)
