@@ -29,6 +29,8 @@ module Plugins::CamaMetaTag::MainHelper
       if tmp[:image].present?
         args[:seo_data][:image] = tmp[:image]
         args[:seo_data][:twitter][:image] = tmp[:image]
+        args[:seo_data][:og][:title] = tmp[:title] if tmp[:title].present?
+        args[:seo_data][:og][:description] = tmp[:descr] if tmp[:descr].present?
         args[:seo_data][:og][:image] = tmp[:image]
       end
     end
