@@ -22,10 +22,18 @@ module Plugins::CamaMetaTag::MainHelper
           author: page.get_option('seo_author').to_s.translate,
           image: page.get_option('seo_image').to_s.translate
       }
-      args[:seo_data][:title] = tmp[:title] if tmp[:title].present?
       args[:seo_data][:keywords] = tmp[:keywords] if tmp[:keywords].present?
-      args[:seo_data][:description] = tmp[:descr] if tmp[:descr].present?
       args[:seo_data][:author] = tmp[:author] if tmp[:author].present?
+      if tmp[:title].present?
+        args[:seo_data][:title] = tmp[:title]
+        args[:seo_data][:og][:title] = tmp[:title]
+        args[:seo_data][:twitter][:title] = tmp[:title]
+      end
+      if tmp[:descr].present?
+        args[:seo_data][:description] = tmp[:descr]
+        args[:seo_data][:og][:description] = tmp[:descr]
+        args[:seo_data][:twitter][:description] = tmp[:descr]
+      end
       if tmp[:image].present?
         args[:seo_data][:image] = tmp[:image]
         args[:seo_data][:twitter][:image] = tmp[:image]
