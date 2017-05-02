@@ -1,38 +1,37 @@
-<% t_scope = 'plugins.cama_meta_tag.admin.meta_tag_fields' %>
 <div class="panel panel-default panel-toggled">
     <div class="panel-heading">
-        <div><b><%= t('.title_seo', scope: t_scope, default: t('.title_seo', locale: :en)) %></b></div>
+        <div><b><%= t('.title_seo', default: t('.title_seo', locale: :en)) %></b></div>
         <ul class="panel-controls">
             <li><a class="panel-collapse" href="#"><span class="fa fa-angle-up"></span></a></li>
         </ul>
     </div>
     <div class="panel-body">
         <div class="form-group">
-            <%= label_tag 'options[seo_title]', t('.seo_title', scope: t_scope, default: t('.seo_title', locale: :en)) %>
+            <%= label_tag 'options[seo_title]', t('.seo_title', default: t('.seo_title', locale: :en)) %>
             <%= text_field_tag 'options[seo_title]', post.get_option('seo_title'), class: 'form-control translatable' %>
         </div>
         <div class="form-group">
-            <%= label_tag 'options[keywords]', t('.seo_keywords', scope: t_scope, default: t('.seo_keywords', locale: :en)) %>
+            <%= label_tag 'options[keywords]', t('.seo_keywords', default: t('.seo_keywords', locale: :en)) %>
             <%= text_field_tag 'options[keywords]', post.get_option('keywords'), class: 'form-control translatable' %>
         </div>
         <div class="form-group">
-            <%= label_tag 'options[seo_description]', t('.seo_descr', scope: t_scope, default: t('.seo_descr', locale: :en)) %>
+            <%= label_tag 'options[seo_description]', t('.seo_descr', default: t('.seo_descr', locale: :en)) %>
             <%= text_area_tag 'options[seo_description]', post.get_option('seo_description'), class: 'form-control translatable' %>
         </div>
 
         <div class="form-group">
-            <%= label_tag 'options[seo_author]', t('.seo_author', scope: t_scope, default: t('.seo_author', locale: :en)) %>
+            <%= label_tag 'options[seo_author]', t('.seo_author', default: t('.seo_author', locale: :en)) %>
             <%= text_field_tag 'options[seo_author]', post.get_option('seo_author'), class: 'form-control' %>
         </div>
         <div class="form-group">
-            <%= label_tag 'options[seo_image]', t('.seo_image', scope: t_scope, default: t('.seo_image', locale: :en)) %> <br>
+            <%= label_tag 'options[seo_image]', t('.seo_image', default: t('.seo_image', locale: :en)) %> <br>
             <%= hidden_field_tag 'options[seo_image]', post.get_option('seo_image') %>
         </div>
     </div>
 </div>
 <script type="application/javascript">
 jQuery(function(){
-    $("#form-post #options_seo_image").input_upload({label: '', title: '<%= t('.seo_image', scope: t_scope, default: t('.seo_image', locale: :en)) %>', type: 'image'});
+    $("#form-post #options_seo_image").input_upload({label: '', title: '<%= t('.seo_image', default: t('.seo_image', locale: :en)) %>', type: 'image'});
     <% if cama_meta_tag_post_is_for_old_version?(post) %> $('#form-post #post_keywords').closest('.form-group').remove(); <% end %>
 })
 </script>
