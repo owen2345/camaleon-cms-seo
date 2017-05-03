@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = CamaMetaTag::VERSION
   s.authors     = ["Owen Peredo"]
   s.email       = ["owenperedo@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/owen2345/camaleon-cms-seo"
   s.summary     = "Permit to manage the seo attributes for each page of Camaleon CMS."
   s.description = "Permit to manage the seo attributes for each page of Camaleon CMS."
   s.license     = "MIT"
