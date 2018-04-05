@@ -13,7 +13,7 @@ module Plugins::CamaMetaTag::MainHelper
   end
 
   def cama_meta_tag_on_seo(args)
-    if is_page?
+    if is_page? || is_category?
       page = args[:object].present? ? args[:object] : @cama_visited_post
       tmp = {
           title: page.get_option('seo_title').to_s.translate,
@@ -52,6 +52,14 @@ module Plugins::CamaMetaTag::MainHelper
   # check if seo plugin is running for Camaleon CMS <= 2.3.6
   def cama_meta_tag_post_is_for_old_version?(post)
     !post.respond_to?(:manage_seo?)
+  end
+
+  def cama_meta_tag_category_saved(args)
+    args[:category].set_multiple_options(params[:options].permit!.to_h)
+  end
+
+  def cama_meta_tag_category_form_custom_html(args)
+    args[:html] << render(partial: plugin_view('admin/meta_tag_fields', 'cama_meta_tag'), locals: {post: args[:category], post_type: args[:category].post_type})
   end
 
   def cama_meta_tag_post_form_custom_html(args)
