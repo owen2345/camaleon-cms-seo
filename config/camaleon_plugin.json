@@ -18,7 +18,8 @@
     "updated_post": ["cama_meta_tag_post_saved"],
     "category_form": ["cama_meta_tag_category_form_custom_html"],
     "created_category": ["cama_meta_tag_category_saved"],
-    "updated_category": ["cama_meta_tag_category_saved"]
+    "updated_category": ["cama_meta_tag_category_saved"],
+    "post_type_settings_form": ["cama_meta_tag_post_type_form_custom_html"]
     //here you can add all your hooks (read documentation)
   }
 }

@@ -58,6 +58,10 @@ module Plugins::CamaMetaTag::MainHelper
     args[:category].set_multiple_options(params[:options].permit!.to_h)
   end
 
+  def cama_meta_tag_post_type_form_custom_html(args)
+    args[:html] << render(partial: plugin_view('admin/meta_tag_fields', 'cama_meta_tag'), locals: {post: args[:post_type]})
+  end
+
   def cama_meta_tag_category_form_custom_html(args)
     args[:html] << render(partial: plugin_view('admin/meta_tag_fields', 'cama_meta_tag'), locals: {post: args[:category], post_type: args[:category].post_type})
   end
