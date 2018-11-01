@@ -14,6 +14,8 @@
     ],
     "seo": ["cama_meta_tag_on_seo"],
     "post_form_custom_html": ["cama_meta_tag_post_form_custom_html"],
+    "created_post_type": ["cama_meta_tag_post_type_saved"],
+    "updated_post_type": ["cama_meta_tag_post_type_saved"],
     "created_post": ["cama_meta_tag_post_saved"],
     "updated_post": ["cama_meta_tag_post_saved"],
     "category_form": ["cama_meta_tag_category_form_custom_html"],
