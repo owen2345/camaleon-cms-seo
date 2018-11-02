@@ -54,6 +54,10 @@ module Plugins::CamaMetaTag::MainHelper
     !post.respond_to?(:manage_seo?)
   end
 
+  def cama_meta_tag_post_type_saved(args)
+    args[:post_type].set_multiple_options(params[:options].permit!.to_h)
+  end
+
   def cama_meta_tag_category_saved(args)
     args[:category].set_multiple_options(params[:options].permit!.to_h)
   end
