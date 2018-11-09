@@ -13,7 +13,7 @@ module Plugins::CamaMetaTag::MainHelper
   end
 
   def cama_meta_tag_on_seo(args)
-    if is_page? || is_category?
+    if is_page? || is_category? || is_post_type?
       page = args[:object].present? ? args[:object] : @cama_visited_post
       tmp = {
           title: page.get_option('seo_title').to_s.translate,
