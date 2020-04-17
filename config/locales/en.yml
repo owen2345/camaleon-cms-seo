@@ -15,6 +15,7 @@ en:
           seo_descr: 'Description'
           seo_author: 'Author'
           seo_image: 'Image (Ideal: 1200 x 1200 or larger with a square aspect ratio)'
+          seo_canonical: 'Canonical Link'
 
 nl:
   plugins:
@@ -33,6 +34,7 @@ nl:
           seo_descr: 'Beschrijving'
           seo_author: 'Auteur'
           seo_image: 'Afbeelding (Ideal: 1200 x 1200 of groter met een vierkant aspect ratio)'
+          seo_canonical: 'Canonieke Link'
 
 pt:
   plugins:
@@ -51,7 +53,7 @@ pt:
           seo_descr: 'Descrição'
           seo_author: 'Autor'
           seo_image: 'Imagem (Ideal: 1200 x 1200 ou maior com uma relação de aspecto quadrada)'
-
+          seo_canonical: 'Link Canônico'
 
 
 pt-BR:
@@ -71,6 +73,7 @@ pt-BR:
           seo_descr: 'Descrição'
           seo_author: 'Autor'
           seo_image: 'Imagem (Ideal: 1200 x 1200 ou maior com uma relação de aspecto quadrada)'
+          seo_canonical: 'Canonical Link'
 
 
 
@@ -91,6 +94,7 @@ de:
           seo_descr: 'Beschreibung'
           seo_author: 'Autor'
           seo_image: 'Bild (Ideal: 1200 x 1200 oder größer mit einem quadratischen Seitenverhältnis)'
+          seo_canonical: 'Kanonischer Link'
 
 
 it:
@@ -110,6 +114,7 @@ it:
           seo_descr: 'Descrizione'
           seo_author: 'Autore'
           seo_image: 'Immagine (ideale: 1200 x 1200 o superiore con un rapporto di aspetto di quadratura)'
+          seo_canonical: 'Collegamento Canonico'
 
 zh-CN:
   plugins:
@@ -128,6 +133,7 @@ zh-CN:
           seo_descr: '描述'
           seo_author: '作者'
           seo_image: '图片（理想：1200 x 1200或更大，正方形高宽比）'
+          seo_canonical: '规范链接'
 
 ru:
   plugins:
@@ -146,6 +152,7 @@ ru:
           seo_descr: 'Описание'
           seo_author: 'автор'
           seo_image: 'Изображение (Идеально: 1200 х 1200 или больше с квадратным соотношением сторон)'
+          seo_canonical: 'каноническая ссылка'
 
 es:
   plugins:
@@ -164,3 +171,4 @@ es:
           seo_descr: 'Descripción'
           seo_author: 'Autor'
           seo_image: 'Imagen (Ideal: 1200 x 1200 o mayor con una relación de aspecto cuadrada)'
+          seo_canonical: 'Enlace Canónico'
