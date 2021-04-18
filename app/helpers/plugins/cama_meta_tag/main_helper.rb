@@ -20,10 +20,12 @@ module Plugins::CamaMetaTag::MainHelper
           keywords: page.get_option('keywords').to_s.translate,
           descr: page.get_option('seo_description').to_s.translate,
           author: page.get_option('seo_author').to_s.translate,
-          image: page.get_option('seo_image').to_s.translate
+          image: page.get_option('seo_image').to_s.translate,
+          canonical: page.get_option('seo_canonical').to_s.translate
       }
       args[:seo_data][:keywords] = tmp[:keywords] if tmp[:keywords].present?
       args[:seo_data][:author] = tmp[:author] if tmp[:author].present?
+      args[:seo_data][:canonical] = tmp[:canonical] if tmp[:canonical].present?
       if tmp[:title].present?
         args[:seo_data][:title] = tmp[:title]
         args[:seo_data][:og][:title] = tmp[:title]

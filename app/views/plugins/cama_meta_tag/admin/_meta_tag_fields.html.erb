@@ -27,6 +27,10 @@
             <%= label_tag 'options[seo_image]', t('.seo_image', default: t('.seo_image', locale: :en)) %> <br>
             <%= hidden_field_tag 'options[seo_image]', post.get_option('seo_image') %>
         </div>
+        <div class="form-group">
+            <%= label_tag 'options[seo_canonical]', t('.seo_canonical', default: t('.seo_canonical', locale: :en)) %> <br>
+            <%= text_field_tag 'options[seo_canonical]', post.get_option('seo_canonical'), class: 'form-control' %>
+        </div>
     </div>
 </div>
 <script type="application/javascript">
