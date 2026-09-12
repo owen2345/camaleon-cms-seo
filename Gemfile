@@ -18,6 +18,15 @@ group :development do
   gem 'rspec-rails'
   gem 'sqlite3'
 
+  # Linting -- same rubocop plugin set as camaleon_cms, so style stays consistent across the repos.
+  gem 'rubocop'
+  gem 'rubocop-factory_bot'
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
+  gem 'rubocop-rake'
+  gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
+
   # json 3 rejects comments in JSON by default, yet camaleon_cms 2.9.4 and this plugin still ship
   # commented configs that are parsed at boot, and Rails 8.1.3.1's ActiveSupport::JSON.decode raises
   # under json 3 as well. Hold the dummy app on json 2.x until those are fixed.

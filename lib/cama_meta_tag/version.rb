@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CamaMetaTag
-  VERSION = "1.7.2"
+  VERSION = '1.7.2'
 end
