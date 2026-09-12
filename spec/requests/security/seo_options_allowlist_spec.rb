@@ -11,7 +11,7 @@ RSpec.describe 'saving SEO options through the plugin hooks' do
   let(:post_type) { @post.post_type }
 
   describe 'on a post type' do
-    let(:settings_manager) { user_with_manager_grants({ 'settings' => 1 }, 'settings-manager') }
+    let(:settings_manager) { user_with_manager_grants({ 'settings' => 1 }, 'Settings Manager') }
 
     before { sign_in_as(settings_manager, site: @site) }
 
