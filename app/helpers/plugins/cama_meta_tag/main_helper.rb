@@ -87,14 +87,14 @@ module Plugins::CamaMetaTag::MainHelper
     end
   end
 
-  # The submitted SEO fields, as plain values. Nothing else under `options` is stored: on a post type
-  # that would bypass camaleon_cms's own allowlist of post type options. Slicing before permitting
-  # keeps a host that raises on unpermitted parameters unaffected by extra fields.
+  # The submitted SEO fields, as text values. Nothing else under `options` is stored: on a post type
+  # it would bypass camaleon_cms's own allowlist of post type options. The values are picked directly
+  # rather than through `permit`, which reports a nested value under an SEO key as unpermitted and,
+  # on a host that raises for those, would fail the save after the record was stored.
   def cama_meta_tag_submitted_options
     options = params[:options]
-    return {} unless options.respond_to?(:permit)
+    return {} unless options.is_a?(ActionController::Parameters)
 
-    keys = META_TAG_OPTIONS.values
-    options.slice(*keys).permit(*keys).to_h
+    options.to_unsafe_h.slice(*META_TAG_OPTIONS.values).select { |_key, value| value.is_a?(String) }
   end
 end

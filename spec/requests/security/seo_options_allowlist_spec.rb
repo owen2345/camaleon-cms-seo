@@ -58,5 +58,35 @@ RSpec.describe 'saving SEO options through the plugin hooks' do
 
       expect(response).to redirect_to(categories_path)
     end
+
+    # camaleon_cms's own forms carry only keys it permits, so a host may raise on unpermitted
+    # parameters; the SEO fields must then still be stored and any other value ignored.
+    describe 'on a host that raises on unpermitted parameters' do
+      around do |example|
+        previous = ActionController::Parameters.action_on_unpermitted_parameters
+        ActionController::Parameters.action_on_unpermitted_parameters = :raise
+        example.run
+      ensure
+        ActionController::Parameters.action_on_unpermitted_parameters = previous
+      end
+
+      it 'stores the SEO options next to an unrelated key' do
+        patch "#{categories_path}/#{category.id}",
+              params: { category: { name: 'News', slug: 'news' },
+                        options: { 'seo_title' => 'SEO title', 'unrelated' => 'x' } }
+
+        expect(response).to redirect_to(categories_path)
+        expect(CamaleonCms::Category.find(category.id).get_option('seo_title')).to eq('SEO title')
+      end
+
+      it 'stores the SEO options next to a nested value under an SEO key' do
+        patch "#{categories_path}/#{category.id}",
+              params: { category: { name: 'News', slug: 'news' },
+                        options: { 'seo_title' => 'SEO title', 'seo_author' => { 'nested' => ['value'] } } }
+
+        expect(response).to redirect_to(categories_path)
+        expect(CamaleonCms::Category.find(category.id).get_option('seo_title')).to eq('SEO title')
+      end
+    end
   end
 end
