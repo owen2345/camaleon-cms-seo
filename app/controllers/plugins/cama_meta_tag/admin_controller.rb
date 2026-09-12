@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
+# The plugin's admin settings page, which stores the post types selected for the SEO fields.
 class Plugins::CamaMetaTag::AdminController < CamaleonCms::Apps::PluginsAdminController
   include Plugins::CamaMetaTag::MainHelper
+
   def settings
     # actions for admin panel
   end
