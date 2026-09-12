@@ -4,7 +4,7 @@
 
 ### Security: SEO fields store only their own options
 
-The category and post type save hooks stored every submitted `options` key, with any nested value. On a post type that bypassed camaleon_cms's allowlist, so a settings manager could set the post decorator class camaleon_cms constantizes. The hooks now store only the six SEO options, as plain values, and a save without SEO fields no longer answers 500. [#53](https://github.com/owen2345/camaleon-cms-seo/pull/53).
+The category and post type save hooks now store only the six SEO fields, as text values. Before, every submitted `options` key was stored, so a settings manager could set any post type option, and a save without SEO fields answered 500. The post save hooks for Camaleon CMS 2.3.6 and earlier are gone; a plugin adding its own `options[...]` inputs to those two forms stores them from its own hooks. [#53](https://github.com/owen2345/camaleon-cms-seo/pull/53).
 
 ### Fix: plugin config parses under json 3
 

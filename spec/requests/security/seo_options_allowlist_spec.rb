@@ -2,7 +2,7 @@
 
 # The plugin's created_/updated_ hooks save the SEO fields it adds to the category and post type
 # forms. They stored every submitted `options` key, with any nested value, on the record. On a post
-# type that bypassed camaleon_cms's own allowlist of post type options, so a settings manager could
+# type this bypassed camaleon_cms's own allowlist of post type options, so a settings manager could
 # set `cama_post_decorator_class`, the class name camaleon_cms constantizes to decorate every post of
 # that type. A save carrying no SEO fields raised after the record was already stored.
 RSpec.describe 'saving SEO options through the plugin hooks' do
