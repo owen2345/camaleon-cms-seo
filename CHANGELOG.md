@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Security: SEO fields store only their own options
+
+The category and post type save hooks stored every submitted `options` key, with any nested value. On a post type that bypassed camaleon_cms's allowlist, so a settings manager could set the post decorator class camaleon_cms constantizes. The hooks now store only the six SEO options, as plain values, and a save without SEO fields no longer answers 500. [#53](https://github.com/owen2345/camaleon-cms-seo/pull/53).
+
 ### Fix: plugin config parses under json 3
 
 `config/camaleon_plugin.json` carried `//` comments, which the json gem no longer accepts by default as of 3.0, so a host app resolving json 3.x raised `JSON::ParserError` at boot. The file is now plain JSON. [#52](https://github.com/owen2345/camaleon-cms-seo/pull/52).
