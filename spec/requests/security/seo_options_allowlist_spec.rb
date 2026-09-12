@@ -33,7 +33,9 @@ RSpec.describe 'saving SEO options through the plugin hooks' do
 
     before { sign_in_as(cama_admin_user, site: @site) }
 
-    it 'stores only the SEO options, and only plain values' do
+    it 'stores only the SEO options, and only text values, keeping the ones it ignores' do
+      category.set_option('seo_author', 'Jane Doe')
+
       patch "#{categories_path}/#{category.id}",
             params: { category: { name: 'News', slug: 'news' },
                       options: { 'seo_title' => 'SEO title', 'unrelated' => 'x',
@@ -42,7 +44,7 @@ RSpec.describe 'saving SEO options through the plugin hooks' do
       saved_category = CamaleonCms::Category.find(category.id)
       expect(saved_category.get_option('seo_title')).to eq('SEO title')
       expect(saved_category.get_option('unrelated')).to be_nil
-      expect(saved_category.get_option('seo_author')).to be_nil
+      expect(saved_category.get_option('seo_author')).to eq('Jane Doe')
     end
 
     it 'saves a category submitted without SEO fields' do
@@ -52,11 +54,14 @@ RSpec.describe 'saving SEO options through the plugin hooks' do
       expect(post_type.categories.find_by(slug: 'bare')).to be_present
     end
 
-    it 'saves a category whose options are not a set of fields' do
+    it 'saves a category whose options are not a set of fields, keeping its SEO options' do
+      category.set_option('seo_title', 'Kept title')
+
       patch "#{categories_path}/#{category.id}",
             params: { category: { name: 'News', slug: 'news' }, options: 'seo_title' }
 
       expect(response).to redirect_to(categories_path)
+      expect(CamaleonCms::Category.find(category.id).get_option('seo_title')).to eq('Kept title')
     end
 
     # camaleon_cms's own forms carry only keys it permits, so a host may raise on unpermitted
