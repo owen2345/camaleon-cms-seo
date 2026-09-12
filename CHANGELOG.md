@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fix: plugin config parses under json 3
+
+`config/camaleon_plugin.json` carried `//` comments, which the json gem no longer accepts by default as of 3.0, so a host app resolving json 3.x raised `JSON::ParserError` at boot. The file is now plain JSON. [#52](https://github.com/owen2345/camaleon-cms-seo/pull/52).
+
 ### Release pipeline
 
 Adds the manually dispatched Release workflow, the same pipeline as camaleon_editor, cama_contact_form and camaleon_cms. It verifies the requested version against `lib/cama_meta_tag/version.rb`, RubyGems and the existing tags, requires a green CI run for the released commit, builds the gem with `--strict` and audits the packaged files. It then publishes to RubyGems, and tags and creates the GitHub release with the version's CHANGELOG section as notes. Development tooling only. [#51](https://github.com/owen2345/camaleon-cms-seo/pull/51).
