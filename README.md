@@ -16,3 +16,9 @@ bundle install
 (cd spec/dummy && RAILS_ENV=test bin/rails db:test:prepare)
 bin/rspec
 ```
+
+Lint with the same configuration CI enforces:
+
+```bash
+bin/rubocop
+```

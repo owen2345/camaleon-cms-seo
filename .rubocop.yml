@@ -1,0 +1,57 @@
+plugins:
+  - rubocop-factory_bot
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+  - rubocop-rspec_rails
+
+AllCops:
+  Exclude:
+    - bin/**/* # Exclude executable scripts
+    - db/**/*
+    - spec/dummy/**/* # Generated camaleon_cms-backed dummy app (incl. the copied default theme)
+    - /**/vendor/**/* # Exclude downloaded gem code in CI
+  NewCops: enable
+  TargetRailsVersion: 6.1
+  TargetRubyVersion: 3.0 # matches the gemspec's required_ruby_version
+
+# The plugin namespaces with compact class names (Plugins::CamaMetaTag::X), matching Camaleon's
+# plugin layout; nesting them would be a risky restructure of the public constants.
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# The gem has no release workflow and is not published from an interactive session, so the
+# rubygems_mfa_required metadata flag is intentionally not set.
+Gemspec/RequireMFA:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: aligned
+
+# The spec harness helpers ported from camaleon_cms (init_site) are as long as they need to be.
+Metrics/MethodLength:
+  Exclude:
+    - spec/**/*
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/InstanceVariable:
+  Enabled: false
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+Style/MixinUsage:
+  Exclude:
+    - spec/**/*
+
+Style/NumericPredicate:
+  EnforcedStyle: comparison
