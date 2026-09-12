@@ -27,8 +27,8 @@ group :development do
   gem 'rubocop-rspec'
   gem 'rubocop-rspec_rails'
 
-  # json 3 rejects comments in JSON by default, yet camaleon_cms 2.9.4 and this plugin still ship
-  # commented configs that are parsed at boot, and Rails 8.1.3.1's ActiveSupport::JSON.decode raises
-  # under json 3 as well. Hold the dummy app on json 2.x until those are fixed.
+  # json 3 rejects comments in JSON by default, yet camaleon_cms 2.9.4 still ships commented configs
+  # that it parses at boot, and Rails 8.1.3.1's ActiveSupport::JSON.decode raises under json 3 as
+  # well. Hold the dummy app on json 2.x until both are fixed.
   gem 'json', '< 3'
 end
