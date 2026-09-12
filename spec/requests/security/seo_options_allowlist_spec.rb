@@ -25,6 +25,23 @@ RSpec.describe 'saving SEO options through the plugin hooks' do
       expect(saved_post_type.get_option('cama_post_decorator_class')).to be_nil
       expect(CamaleonCms::Post.find(@post.id).decorator_class).to eq(CamaleonCms::PostDecorator)
     end
+
+    it 'does not let a settings manager choose the post decorator class of a new post type' do
+      post '/admin/settings/post_types',
+           params: { post_type: { name: 'Products', slug: 'products' },
+                     options: { 'seo_title' => 'SEO title', 'cama_post_decorator_class' => 'Object' } }
+
+      created_post_type = @site.post_types.find_by!(slug: 'products')
+      expect(created_post_type.get_option('seo_title')).to eq('SEO title')
+      expect(created_post_type.get_option('cama_post_decorator_class')).to be_nil
+    end
+
+    it 'saves a post type submitted without SEO fields' do
+      patch "/admin/settings/post_types/#{post_type.id}",
+            params: { post_type: { name: post_type.name, slug: post_type.slug } }
+
+      expect(response).to redirect_to('/admin/settings/post_types')
+    end
   end
 
   describe 'on a category' do
