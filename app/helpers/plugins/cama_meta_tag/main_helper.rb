@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 # Hook handlers for the cama_meta_tag plugin, named in config/camaleon_plugin.json. They add the SEO
-# fields to the admin post, category and post type forms, store the submitted options, and override
-# the frontend meta tags with the options saved on the visited object.
+# fields to the admin post, category and post type forms, store the ones submitted for a category or
+# a post type (camaleon_cms stores a post's own), and override the frontend meta tags with the options
+# saved on the visited object.
 module Plugins::CamaMetaTag::MainHelper
   # The SEO attributes the plugin manages, keyed by meta tag, with the option each is stored under.
   META_TAG_OPTIONS = { title: 'seo_title', keywords: 'keywords', description: 'seo_description',
@@ -29,18 +30,6 @@ module Plugins::CamaMetaTag::MainHelper
     cama_meta_tag_apply_seo(args[:seo_data], seo)
   end
 
-  # fix for old versions of camaleon cms
-  def cama_meta_tag_post_saved(args)
-    return unless cama_meta_tag_post_is_for_old_version?(args[:post])
-
-    args[:post].set_multiple_options(cama_meta_tag_submitted_options)
-  end
-
-  # check if seo plugin is running for Camaleon CMS <= 2.3.6
-  def cama_meta_tag_post_is_for_old_version?(post)
-    !post.respond_to?(:manage_seo?)
-  end
-
   def cama_meta_tag_post_type_saved(args)
     args[:post_type].set_multiple_options(cama_meta_tag_submitted_options)
   end
@@ -61,13 +50,7 @@ module Plugins::CamaMetaTag::MainHelper
   end
 
   def cama_meta_tag_post_form_custom_html(args)
-    manage_seo = if cama_meta_tag_post_is_for_old_version?(args[:post])
-                   # Camaleon CMS <= 2.3.6 has no seo setting, so its keywords setting stands in for it.
-                   args[:post].manage_keywords?(args[:post_type])
-                 else
-                   args[:post].manage_seo?
-                 end
-    return unless manage_seo
+    return unless args[:post].manage_seo?
 
     args[:html] << render(partial: plugin_view('admin/meta_tag_fields'),
                           locals: { post: args[:post],
