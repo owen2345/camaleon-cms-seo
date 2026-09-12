@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Release pipeline
+
+Adds the manually dispatched Release workflow, the same pipeline as camaleon_editor, cama_contact_form and camaleon_cms. It verifies the requested version against `lib/cama_meta_tag/version.rb`, RubyGems and the existing tags, requires a green CI run for the released commit, builds the gem with `--strict` and audits the packaged files. It then publishes to RubyGems, and tags and creates the GitHub release with the version's CHANGELOG section as notes. Development tooling only. [#51](https://github.com/owen2345/camaleon-cms-seo/pull/51).
+
 ### RuboCop and CI
 
 Adds RuboCop (same plugin set as camaleon_cms), lint-cleans the codebase with behavior-preserving fixes, and adds a CI workflow running the RSpec suite and RuboCop on every push and pull request. Development tooling only; the packaged gem's behavior is unchanged. [#50](https://github.com/owen2345/camaleon-cms-seo/pull/50).

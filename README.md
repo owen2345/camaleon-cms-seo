@@ -22,3 +22,10 @@ Lint with the same configuration CI enforces:
 ```bash
 bin/rubocop
 ```
+
+## Releasing
+
+Bump `lib/cama_meta_tag/version.rb`, cut a `## <version>` section in `CHANGELOG.md`, merge, then
+run the **Release** workflow from the Actions tab on `master`, typing that same version. The
+workflow refuses to run without a green CI run for the released commit, publishes the gem to
+RubyGems, and creates the tag and GitHub release.

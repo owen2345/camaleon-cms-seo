@@ -21,7 +21,7 @@ AllCops:
 Style/ClassAndModuleChildren:
   Enabled: false
 
-# The gem has no release workflow and is not published from an interactive session, so the
+# The gem is published by a CI workflow using a scoped API key, not an interactive session, so the
 # rubygems_mfa_required metadata flag is intentionally not set.
 Gemspec/RequireMFA:
   Enabled: false
