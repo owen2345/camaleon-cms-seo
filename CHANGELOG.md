@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Security: pin the escaping of SEO values
+
+SEO values are escaped wherever they are rendered, by the meta-tags gem in the page head and by Rails' form helpers in the admin SEO fields, so markup stored in them stays text. No code change; adds a regression spec pinning that escaping. [#54](https://github.com/owen2345/camaleon-cms-seo/pull/54).
+
 ### Security: SEO fields store only their own options
 
 The category and post type save hooks now store only the six SEO fields, as text values. Before, every submitted `options` key was stored, so a settings manager could set any post type option, and a save without SEO fields answered 500. The post save hooks for Camaleon CMS 2.3.6 and earlier are gone; a plugin adding its own `options[...]` inputs to those two forms stores them from its own hooks. [#53](https://github.com/owen2345/camaleon-cms-seo/pull/53).
