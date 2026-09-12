@@ -33,7 +33,7 @@ module Plugins::CamaMetaTag::MainHelper
   def cama_meta_tag_post_saved(args)
     return unless cama_meta_tag_post_is_for_old_version?(args[:post])
 
-    args[:post].set_multiple_options(params[:options].permit!.to_h)
+    args[:post].set_multiple_options(cama_meta_tag_submitted_options)
   end
 
   # check if seo plugin is running for Camaleon CMS <= 2.3.6
@@ -42,11 +42,11 @@ module Plugins::CamaMetaTag::MainHelper
   end
 
   def cama_meta_tag_post_type_saved(args)
-    args[:post_type].set_multiple_options(params[:options].permit!.to_h)
+    args[:post_type].set_multiple_options(cama_meta_tag_submitted_options)
   end
 
   def cama_meta_tag_category_saved(args)
-    args[:category].set_multiple_options(params[:options].permit!.to_h)
+    args[:category].set_multiple_options(cama_meta_tag_submitted_options)
   end
 
   def cama_meta_tag_post_type_form_custom_html(args)
@@ -85,5 +85,16 @@ module Plugins::CamaMetaTag::MainHelper
 
       [seo_data, seo_data[:og], seo_data[:twitter]].each { |data| data[key] = seo[key] }
     end
+  end
+
+  # The submitted SEO fields, as plain values. Nothing else under `options` is stored: on a post type
+  # that would bypass camaleon_cms's own allowlist of post type options. Slicing before permitting
+  # keeps a host that raises on unpermitted parameters unaffected by extra fields.
+  def cama_meta_tag_submitted_options
+    options = params[:options]
+    return {} unless options.respond_to?(:permit)
+
+    keys = META_TAG_OPTIONS.values
+    options.slice(*keys).permit(*keys).to_h
   end
 end
