@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 # Hook handlers for the cama_meta_tag plugin, named in config/camaleon_plugin.json. They add the SEO
-# fields to the admin post, category and post type forms, store the submitted options, and override
-# the frontend meta tags with the options saved on the visited object.
+# fields to the admin post, category and post type forms, store the ones submitted for a category or
+# a post type (camaleon_cms stores a post's own), and override the frontend meta tags with the options
+# saved on the visited object.
 module Plugins::CamaMetaTag::MainHelper
   # The SEO attributes the plugin manages, keyed by meta tag, with the option each is stored under.
   META_TAG_OPTIONS = { title: 'seo_title', keywords: 'keywords', description: 'seo_description',
@@ -29,24 +30,12 @@ module Plugins::CamaMetaTag::MainHelper
     cama_meta_tag_apply_seo(args[:seo_data], seo)
   end
 
-  # fix for old versions of camaleon cms
-  def cama_meta_tag_post_saved(args)
-    return unless cama_meta_tag_post_is_for_old_version?(args[:post])
-
-    args[:post].set_multiple_options(params[:options].permit!.to_h)
-  end
-
-  # check if seo plugin is running for Camaleon CMS <= 2.3.6
-  def cama_meta_tag_post_is_for_old_version?(post)
-    !post.respond_to?(:manage_seo?)
-  end
-
   def cama_meta_tag_post_type_saved(args)
-    args[:post_type].set_multiple_options(params[:options].permit!.to_h)
+    args[:post_type].set_multiple_options(cama_meta_tag_submitted_options)
   end
 
   def cama_meta_tag_category_saved(args)
-    args[:category].set_multiple_options(params[:options].permit!.to_h)
+    args[:category].set_multiple_options(cama_meta_tag_submitted_options)
   end
 
   def cama_meta_tag_post_type_form_custom_html(args)
@@ -61,13 +50,7 @@ module Plugins::CamaMetaTag::MainHelper
   end
 
   def cama_meta_tag_post_form_custom_html(args)
-    manage_seo = if cama_meta_tag_post_is_for_old_version?(args[:post])
-                   # Camaleon CMS <= 2.3.6 has no seo setting, so its keywords setting stands in for it.
-                   args[:post].manage_keywords?(args[:post_type])
-                 else
-                   args[:post].manage_seo?
-                 end
-    return unless manage_seo
+    return unless args[:post].manage_seo?
 
     args[:html] << render(partial: plugin_view('admin/meta_tag_fields'),
                           locals: { post: args[:post],
@@ -85,5 +68,16 @@ module Plugins::CamaMetaTag::MainHelper
 
       [seo_data, seo_data[:og], seo_data[:twitter]].each { |data| data[key] = seo[key] }
     end
+  end
+
+  # The submitted SEO fields, as text values. Nothing else under `options` is stored: on a post type
+  # it would bypass camaleon_cms's own allowlist of post type options. The values are picked directly
+  # rather than through `permit`, which reports a nested value under an SEO key as unpermitted and,
+  # on a host that raises for those, would fail the save after the record was stored.
+  def cama_meta_tag_submitted_options
+    options = params[:options]
+    return {} unless options.is_a?(ActionController::Parameters)
+
+    options.to_unsafe_h.slice(*META_TAG_OPTIONS.values).select { |_key, value| value.is_a?(String) }
   end
 end

@@ -10,5 +10,15 @@ RSpec.describe CamaMetaTag::Engine do
     it 'is plain JSON, without comments' do
       expect { JSON.parse(config, allow_comments: false) }.not_to raise_error
     end
+
+    # The plugin stores the SEO fields of categories and post types; a post's are stored by
+    # camaleon_cms itself, so no post save hook is registered.
+    it 'registers handlers for the forms it extends, the category and post type saves, and the seo hook' do
+      expect(JSON.parse(config)['hooks'].keys).to contain_exactly(
+        'on_active', 'on_inactive', 'seo', 'post_form_custom_html', 'category_form',
+        'post_type_settings_form', 'created_post_type', 'updated_post_type', 'created_category',
+        'updated_category'
+      )
+    end
   end
 end
