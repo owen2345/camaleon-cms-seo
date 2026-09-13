@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.7.3
+
 ### Security: pin the escaping of SEO values
 
 SEO values are escaped wherever they are rendered, by the meta-tags gem in the page head and by Rails' form helpers in the admin SEO fields, so markup stored in them stays text. No code change; adds a regression spec pinning that escaping. [#54](https://github.com/owen2345/camaleon-cms-seo/pull/54).
