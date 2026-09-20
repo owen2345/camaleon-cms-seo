@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Tooling: the suite can run against an unreleased camaleon_cms
+
+A callable **Core compatibility** workflow runs the suite against a given camaleon_cms commit; core calls it from its own pipeline, so a core change that breaks the plugin shows on the core pull request. Setting `CAMALEON_CMS_PATH` makes the Gemfile source the core from a local checkout; unset, nothing changes. Development tooling only. [#56](https://github.com/owen2345/camaleon-cms-seo/pull/56).
+
 ## 1.7.3
 
 ### Security: pin the escaping of SEO values
