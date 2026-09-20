@@ -7,7 +7,16 @@ source 'https://rubygems.org'
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem 'camaleon_cms', '>= 2.9.4'
+# CAMALEON_CMS_PATH sources the core from a local checkout instead of the released gem, which is how
+# the Core compatibility workflow (.github/workflows/core_compat.yml) runs this suite against an
+# unreleased core commit. The committed Gemfile.lock belongs to the released gem: after a local run
+# with the variable set, restore it with `git checkout Gemfile.lock`.
+camaleon_cms_path = ENV.fetch('CAMALEON_CMS_PATH', '')
+if camaleon_cms_path.empty?
+  gem 'camaleon_cms', '>= 2.9.4'
+else
+  gem 'camaleon_cms', path: camaleon_cms_path
+end
 gem 'sprockets-rails', '>= 3.5.2'
 
 # Development/test dependencies (none are shipped in the packaged gem). A camaleon_cms-backed dummy
