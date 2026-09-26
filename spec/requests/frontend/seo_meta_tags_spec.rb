@@ -24,6 +24,13 @@ RSpec.describe 'the frontend SEO meta tags' do
     document.at_css(%(meta[#{attribute}="#{value}"]))&.[]('content')
   end
 
+  # camaleon_cms's default page title. the_title is HTML-escaped at the source, while the parsed
+  # <title> text is decoded, so the expectation is decoded too: the site is named with an apostrophe
+  # (below) to hold the two apart, as a Faker name with one did by chance.
+  def default_title
+    CGI.unescapeHTML("#{@site.the_title} | #{@post.the_title}")
+  end
+
   context 'with SEO options saved on the post' do
     before { @post.set_options(seo_options) }
 
@@ -55,15 +62,18 @@ RSpec.describe 'the frontend SEO meta tags' do
   end
 
   context 'without SEO options on the post' do
+    before { @site.update!(name: "The Editor's Site") }
+
     it "keeps camaleon_cms's default title" do
       document = visit_sample_post
 
-      expect(document.at_css('title').text).to eq("#{@site.the_title} | #{@post.the_title}")
+      expect(document.at_css('title').text).to eq(default_title)
     end
   end
 
   context 'with the plugin inactive' do
     before do
+      @site.update!(name: "The Editor's Site")
       @post.set_options(seo_options)
       store_current_site(@site)
       plugin_uninstall('cama_meta_tag')
@@ -72,7 +82,7 @@ RSpec.describe 'the frontend SEO meta tags' do
     it "ignores the post's SEO options" do
       document = visit_sample_post
 
-      expect(document.at_css('title').text).to eq("#{@site.the_title} | #{@post.the_title}")
+      expect(document.at_css('title').text).to eq(default_title)
     end
   end
 end
