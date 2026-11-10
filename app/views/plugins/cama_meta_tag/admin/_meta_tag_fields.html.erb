@@ -36,6 +36,5 @@
 <script type="application/javascript">
 jQuery(function(){
     $("#options_seo_image").input_upload({label: '', title: '<%= t('.seo_image', default: t('.seo_image', locale: :en)) %>', type: 'image'});
-    <% if cama_meta_tag_post_is_for_old_version?(post) %> $('#post_keywords').closest('.form-group').remove(); <% end %>
 })
 </script>
