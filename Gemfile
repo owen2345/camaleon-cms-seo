@@ -8,7 +8,7 @@ source 'https://rubygems.org'
 gemspec
 
 # CAMALEON_CMS_PATH sources the core from a local checkout instead of the released gem, which is how
-# the Core compatibility workflow (.github/workflows/core_compat.yml) runs this suite against an
+# the reusable workflow (.github/workflows/core_compat.yml) runs this suite against an
 # unreleased core commit. The committed Gemfile.lock belongs to the released gem: after a local run
 # with the variable set, restore it with `git checkout Gemfile.lock`.
 camaleon_cms_path = ENV.fetch('CAMALEON_CMS_PATH', '')

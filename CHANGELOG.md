@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Tooling: CI runs the suite against Camaleon master
+
+An advisory check runs the suite against the `master` branch of camaleon_cms, on each pull request and each push to `master`. The RSpec check of CI shows the camaleon_cms version that it tests. Development tooling only. [#61](https://github.com/owen2345/camaleon-cms-seo/pull/61).
+
 ### Tooling: the default page title spec no longer depends on the site's name
 
 The two examples checking camaleon_cms's default page title compare it decoded, and name the site with an apostrophe, so they pass whatever name Faker draws. Spec only. [#57](https://github.com/owen2345/camaleon-cms-seo/pull/57).
