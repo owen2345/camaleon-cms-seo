@@ -22,5 +22,5 @@ Gem::Specification.new do |s|
   # No test_files: RubyGems merges it into `files`, which would ship the test suite to users.
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
-  s.add_dependency 'rails'
+  s.add_dependency 'rails', '>= 6.1'
 end

@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     cama_meta_tag (1.7.3)
-      rails
+      rails (>= 6.1)
 
 GEM
   remote: https://rubygems.org/
