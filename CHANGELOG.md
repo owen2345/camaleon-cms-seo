@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Security: Ruby 3.4.13, Rails 8.1.4.1 and a Rails floor
+
+The gem now declares `rails >= 6.1`, the floor of camaleon_cms. The development Ruby moves to 3.4.13, because Ruby 3.4.12 and earlier has CVE-2026-132825. `Gemfile.lock` moves to Rails 8.1.4.1 and to fixed releases of the other gems with an open advisory. [#62](https://github.com/owen2345/camaleon-cms-seo/pull/62).
+
 ### Tooling: CI runs the suite against Camaleon master
 
 An advisory check runs the suite against the `master` branch of camaleon_cms, on each pull request and each push to `master`. The RSpec check of CI shows the camaleon_cms version that it tests. Development tooling only. [#61](https://github.com/owen2345/camaleon-cms-seo/pull/61).
